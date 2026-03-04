@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weightlifting for Adolescents</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Safe, effective weightlifting for adolescents: benefits, technique, injury prevention exercises, and sample programs.">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-alt: #020617;
+      --card: #020617;
+      --accent: #22c55e;
+      --accent-soft: #bbf7d0;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --danger: #f97373;
+      --border: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(2, 6, 23, 0.9);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+      padding: 0;
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    nav a { color: var(--muted); font-weight: 500; }
+    nav a:hover { color: var(--accent); }
+
+    .hero {
+      max-width: 1100px;
+      margin: 1.75rem auto 1.5rem;
+      padding: 1.5rem 1.25rem 0.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 2rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.1rem, 3.1vw, 2.7rem);
+      margin: 0 0 0.5rem;
+    }
+    .hero h1 span {
+      color: var(--accent);
+    }
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .badge {
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.18), rgba(15, 23, 42, 0.9));
+      padding: 0.35rem 0.75rem;
+      font-size: 0.75rem;
+      color: var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      white-space: nowrap;
+    }
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .btn {
+      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border: 1px solid var(--accent);
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+      color: #022c22;
+      font-weight: 600;
+      box-shadow: 0 8px 25px rgba(34, 197, 94, 0.35);
+      cursor: pointer;
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--muted);
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent-soft);
+    }
+
+    .hero-image {
+      position: relative;
+      padding-bottom: 1.75rem;
+    }
+    .hero-card {
+      border-radius: 1.25rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at top, rgba(34,197,94,0.09), rgba(15,23,42,0.96));
+      overflow: hidden;
+      box-shadow:
+        0 20px 60px rgba(15, 23, 42, 0.95),
+        0 0 0 1px rgba(15, 23, 42, 0.7);
+    }
+    .hero-img-wrapper {
+      position: relative;
+      overflow: hidden;
+      max-height: 260px;
+    }
+    .hero-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.15) contrast(1.08);
+    }
+    .hero-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.3), transparent 50%);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+    .hero-metrics {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.85rem 1rem 0.9rem;
+      border-top: 1px solid rgba(30, 64, 175, 0.55);
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.9));
+    }
+    .metric {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .metric strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--accent-soft);
+    }
+
+    .hero-floater {
+      position: absolute;
+      inset: auto auto 0.1rem 45%;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      padding: 0.5rem 0.75rem;
+      background: radial-gradient(circle at top left, rgba(34,197,94,0.4), rgba(15,23,42,0.98));
+      border: 1px solid rgba(34,197,94,0.35);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--accent-soft);
+      box-shadow: 0 12px 30px rgba(15,23,42,0.9);
+    }
+    .hero-floater span {
+      color: var(--muted);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+      padding: 0 1.25rem 3rem;
+    }
+    section {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.7);
+    }
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+    section p {
+      color: var(--muted);
+      max-width: 58rem;
+    }
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(15,23,42,0.95), var(--card));
+      border-radius: 1rem;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      padding: 1rem 1.1rem;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1.05rem;
+    }
+    .card small {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.15rem 0.6rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .pill strong {
+      color: var(--accent-soft);
+      font-weight: 600;
+    }
+    ul {
+      padding-left: 1.2rem;
+      margin: 0.35rem 0 0;
+    }
+    li {
+      margin-bottom: 0.25rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .table-wrapper {
+      margin-top: 0.75rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    thead {
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.9));
+    }
+    th, td {
+      padding: 0.55rem 0.7rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+    th {
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    tbody tr:nth-child(odd) {
+      background: rgba(15, 23, 42, 0.7);
+    }
+    tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.95);
+    }
+    .label-danger {
+      color: var(--danger);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-img-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .form-list h3 {
+      margin-bottom: 0.4rem;
+    }
+    .form-list ul {
+      margin-top: 0.15rem;
+    }
+    .form-tip {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+    .form-img-card {
+      border-radius: 1rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      overflow: hidden;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.16), rgba(15,23,42,0.97));
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.95);
+    }
+    .form-img-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+    .form-img-caption {
+      padding: 0.55rem 0.7rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 1.25rem 2rem;
+      background: radial-gradient(circle at top, #020617, #000);
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    footer .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-image {
+        order: -1;
+      }
+      .form-img-row {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .hero {
+        padding-top: 1rem;
+      }
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .table-wrapper {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav-inner">
+    <div class="logo">Youth Lifting Lab</div>
+    <nav>
+      <ul>
+        ><a href="#benefits">Benefits</a></li>
+        ><a href="#injury-prevention">Injury Prevention</a></li>
+        ><a href="#programs">Programs</a></li>
+        ><a href="#technique">Technique</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div>
+    <h1>Weightlifting for <span>Adolescents</span></h1>
+    <p>Smart, supervised resistance training helps teens build strength, protect against injury, and develop lifelong healthy habits without harming growth plates when techniques and loads are appropriate.</p>
+    <div class="hero-badges">
+      <div class="badge">
+        <div class="badge-dot"></div>
+        <span>Evidence-based guidelines</span>
+      </div>
+      <div class="badge">
+        <span>Age range:</span> <strong>12–18 years</strong>
+      </div>
+      <div class="badge">
+        <span>Focus:</span> <strong>Strength + Safety</strong>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a class="btn" href="#programs">View Sample Programs</a>
+      <a class="btn btn-secondary" href="#technique">Learn Technique Cues</a>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <div class="hero-card">
+      <div class="hero-img-wrapper">
+        <!-- Replace src with your own teen lifting image if you want -->
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/fe74c1db0d4e86cd7ff87619aab2a855e97a94ca.jpg" alt="Adolescent athletes performing plank exercise to build core stability">
+        <div class="hero-img-overlay"></div>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric">
+          <strong>Lower injury risk</strong>
+          With proper coaching and loads, strength training has similar or lower injury rates than many team sports.
+        </div>
+      </div>
+    </div>
+    <div class="hero-floater">
+      <div class="badge-dot"></div>
+      <div>
+        <strong>Key rule:</strong>
+        <span>Technique first, then weight.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main>
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <h2>Why Weightlifting Is Safe and Beneficial</h2>
+    <p>Modern research from pediatric and sports medicine groups shows that well‑designed resistance training programs are safe for adolescents and can improve strength, bone health, body composition, performance, and self‑esteem while helping prevent sports injuries.</p>
+
+    <div class="grid grid-3" style="margin-top: 1rem;">
+      <article class="card">
+        <h3>Physical Health</h3>
+        <small>Strong muscles, strong bones</small>
+        <ul>
+          >Increases muscular strength and power for daily life and sports. [web:31][web:34]</li>
+          >Improves bone strength and mineral content, supporting healthy growth. [web:31][web:34]</li>
+          >Helps maintain healthy blood pressure and cholesterol levels. [web:37]</li>
+          >Supports healthy body composition and decreases adiposity over time. [web:31]</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Injury Protection</h3>
+        <small>More resilient joints</small>
+        <ul>
+          >Strengthens muscles, tendons, and ligaments around joints, lowering injury risk. [web:31][web:34]</li>
+          >Improves movement control, balance, and landing mechanics. [web:32][web:35]</li>
+          >Builds “strength reserves” so practices and games are less stressful on tissues. [web:34][web:40]</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Mental & Social</h3>
+        <small>Confidence and consistency</small>
+        <ul>
+          >Boosts self‑esteem and confidence as strength and skills improve. [web:31][web:34]</li>
+          >Introduces a structured habit that can track into adulthood. [web:31][web:34]</li>
+          >Can be an accessible on‑ramp to more physical activity for inactive teens. [web:31]</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="card" style="margin-top: 1.25rem;">
+      <p class="label-danger">Myth check</p>
+      <p>Well‑programmed resistance training has not been shown to stunt growth or damage growth plates when supervision, proper technique, and age‑appropriate loads are used.</p>
+      <p style="font-size:0.85rem; color: var(--muted); margin-top:0.4rem;">Always work with a qualified coach or physical education teacher if possible, especially when learning free‑weight exercises.</p>
+    </div>
+  </section>
+
+  <!-- INJURY PREVENTION / EXERCISES -->
+  <section id="injury-prevention">
+    <h2>Key Exercises for Injury Prevention</h2>
+    <p>These exercise categories help protect common problem areas for adolescent athletes, especially the knees, shoulders, and lower back, when combined with good warm‑ups and gradual progression.</p>
+
+    <div class="grid grid-2" style="margin-top: 1rem;">
+      <article class="card">
+        <h3>Knee & Ankle Protection</h3>
+        <span class="pill"><strong>Focus</strong> Jumps, landings, change of direction</span>
+        <ul>
+          ><strong>Bodyweight squat</strong> – Learn to sit back and keep knees tracking over toes for safe loading. [web:32]</li>
+          ><strong>Reverse and walking lunges</strong> – Strengthen quads and glutes while training knee alignment. [web:32][web:35]</li>
+          ><strong>Single‑leg squat or step‑down</strong> – Improves hip and knee stability on one leg. [web:35]</li>
+          ><strong>Calf raises</strong> – Support ankles and Achilles tendon, important for running and jumping. [web:32]</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Shoulder & Upper‑Body Protection</h3>
+        <span class="pill"><strong>Focus</strong> Pressing and overhead work</span>
+        <ul>
+          ><strong>Push‑ups</strong> – Build pressing strength with good shoulder position before using weights. [web:32]</li>
+          ><strong>Dumbbell row</strong> – Strengthens upper‑back muscles that support shoulder blades. [web:32]</li>
+          ><strong>Band pull‑apart / face pull</strong> – Helps prevent rounded shoulders and imbalances. [web:32]</li>
+          ><strong>Shoulder circles & arm swings</strong> – Dynamic warm‑up for fluid shoulder motion. [web:32]</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="grid grid-2" style="margin-top: 1.25rem;">
+      <article class="card">
+        <h3>Core & Lower Back Protection</h3>
+        <span class="pill"><strong>Focus</strong> Stable spine under load</span>
+        <ul>
+          ><strong>Front plank & side plank</strong> – Train core endurance for safe squats and deadlifts. [web:32][web:35]</li>
+          ><strong>Bird dog</strong> – Teaches hip and shoulder movement while the spine stays stable. [web:32]</li>
+          ><strong>Hip hinge with dowel</strong> – Practice deadlift pattern without heavy weight first. [web:31]</li>
+          ><strong>Glute bridge</strong> – Activates glutes to help protect the lower back. [web:32]</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Mobility & Stretching</h3>
+        <span class="pill"><strong>Focus</strong> Flexible, balanced muscles</span>
+        <ul>
+          ><strong>Dynamic warm‑up</strong> – Light jog, high knees, butt kicks, and leg swings before lifting. [web:32][web:38]</li>
+          ><strong>Hamstring stretch</strong> – Reduces tightness that can pull on the low back. [web:38]</li>
+          ><strong>Hip flexor and quad stretch</strong> – Counteracts long periods of sitting and sports loading. [web:35][web:38]</li>
+          ><strong>Chest and shoulder stretches</strong> – Help keep posture balanced with pushing exercises. [web:32]</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="table-wrapper" style="margin-top:1.25rem;">
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Common Issue</th>
+            <th>Helpful Exercise</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Knee</td>
+            <td>Valgus collapse (knee caves inward)</td>
+            <td>Squats, lunges with knees tracking over 2nd/3rd toe</td>
+            <td>Use a mirror; focus on slow, controlled lowering. [web:32][web:35]</td>
+          </tr>
+          <tr>
+            <td>Ankle</td>
+            <td>Sprain risk when cutting/jumping</td>
+            <td>Calf raises, single‑leg balance, soft landings</td>
+            <td>Land like a “quiet ninja” with knees bent and hips back. [web:32][web:35]</td>
+          </tr>
+          <tr>
+            <td>Shoulder</td>
+            <td>Impingement, instability</td>
+            <td>Rows, band pull‑aparts, controlled push‑ups</td>
+            <td>Keep shoulder blades pulled slightly “down and back.” [web:32]</td>
+          </tr>
+          <tr>
+            <td>Lower back</td>
+            <td>Strain from rounding under load</td>
+            <td>Planks, bird dogs, hip hinge practice</td>
+            <td>Brace core as if preparing to be lightly “poked” in the stomach. [web:31][web:32]</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section id="programs">
+    <h2>Example Training Programs for Teens</h2>
+    <p>These sample programs assume you are healthy and cleared for physical activity, and they prioritize full‑body strength, good movement patterns, and gradual progression 2–3 days per week.</p>
+
+    <article class="card">
+      <h3>Beginner: 2‑Day Full‑Body Program (Weeks 1–4)</h3>
+      <p>Perform each workout 2 days per week on non‑consecutive days (for example, Monday and Thursday), starting with only bodyweight or very light weights and focusing on slow, controlled reps.</p>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Sets × Reps</th>
+              <th>Rest</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bodyweight squat</td>
+              <td>3 × 10–12</td>
+              <td>60–90 s</td>
+              <td>Keep heels down, chest up, and knees tracking over toes. [web:32]</td>
+            </tr>
+            <tr>
+              <td>Push‑up (elevated if needed)</td>
+              <td>3 × 6–10</td>
+              <td>60–90 s</td>
+              <td>Body in straight line; lower chest between hands, not head first. [web:32]</td>
+            </tr>
+            <tr>
+              <td>Dumbbell or band row</td>
+              <td>3 × 10–12</td>
+              <td>60–90 s</td>
+              <td>Pull toward lower ribs, pause, and squeeze shoulder blades. [web:32]</td>
+            </tr>
+            <tr>
+              <td>Reverse lunge</td>
+              <td>2–3 × 8 each leg</td>
+              <td>60–90 s</td>
+              <td>Step back, drop straight down, front knee over ankle. [web:32]</td>
+            </tr>
+            <tr>
+              <td>Front plank</td>
+              <td>3 × 20–30 s</td>
+              <td>45–60 s</td>
+              <td>Keep straight line from ears to ankles without sagging. [web:32][web:35]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="card" style="margin-top:1.25rem;">
+      <h3>Intermediate: 3‑Day Strength Program (Weeks 5–8)</h3>
+      <p>Once technique is solid and you can complete beginner workouts comfortably, you can move to 3 days per week, splitting lower‑body, upper‑body, and full‑body sessions.</p>
+
+      <h4 style="font-size:0.95rem; margin-top:0.75rem;">Day 1 – Lower Body & Core</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Sets × Reps</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Goblet squat</td>
+              <td>3–4 × 8–10</td>
+              <td>Hold dumbbell at chest, keep elbows inside knees at bottom. [web:32]</td>
+            </tr>
+            <tr>
+              <td>Romanian deadlift (dumbbells)</td>
+              <td>3 × 8–10</td>
+              <td>Push hips back with flat back, feel stretch in hamstrings. [web:31]</td>
+            </tr>
+            <tr>
+              <td>Walking lunges</td>
+              <td>3 × 10 steps each leg</td>
+              <td>Short, controlled steps; no “slamming” knee into floor. [web:32][web:35]</td>
+            </tr>
+            <tr>
+              <td>Side plank</td>
+              <td>3 × 20–30 s per side</td>
+              <td>Stack shoulders and hips, avoid sagging. [web:32]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="font-size:0.95rem; margin-top:0.9rem;">Day 2 – Upper Body & Core</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Sets × Reps</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Push‑up or dumbbell bench press</td>
+              <td>3–4 × 8–10</td>
+              <td>Wrists under shoulders; lower with control, no bouncing. [web:32]</td>
+            </tr>
+            <tr>
+              <td>One‑arm dumbbell row</td>
+              <td>3 × 8–10 each arm</td>
+              <td>Back flat, pull elbow toward hip, pause at top. [web:32]</td>
+            </tr>
+            <tr>
+              <td>Band pull‑apart / face pull</td>
+              <td>3 × 12–15</td>
+              <td>Control band both directions; do not shrug shoulders. [web:32]</td>
+            </tr>
+            <tr>
+              <td>Dead bug or bird dog</td>
+              <td>3 × 8–10 each side</td>
+              <td>Slow tempo, ribs and low back stay gently pressed to floor (dead bug). [web:32]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="font-size:0.95rem; margin-top:0.9rem;">Day 3 – Power, Balance & Conditioning</h4>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Exercise</th>
+              <th>Sets × Reps / Time</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Squat jumps or box jumps (low box)</td>
+              <td>4 × 5</td>
+              <td>Land softly with knees bent; stop if form breaks down. [web:35]</td>
+            </tr>
+            <tr>
+              <td>Single‑leg Romanian deadlift (bodyweight)</td>
+              <td>3 × 8 each leg</td>
+              <td>Balance and hinge at hip, keep back flat. [web:35]</td>
+            </tr>
+            <tr>
+              <td>Farmer carry (dumbbells)</td>
+              <td>4 × 20–30 m</td>
+              <td>Stand tall, walk with short steps and controlled breathing. [web:32]</td>
+            </tr>
+            <tr>
+              <td>Light conditioning (bike, jog, jump rope)</td>
+              <td>10–15 min easy</td>
+              <td>Keep it conversational, not all‑out sprinting. [web:31]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <!-- TECHNIQUE / FORM HELP -->
+  <section id="technique">
+    <h2>Form and Technique Basics</h2>
+    <p>Good technique allows you to get stronger while protecting your joints and spine, and it always matters more than how much weight is on the bar.</p>
+
+    <div class="form-img-row" style="margin-top:1rem;">
+      <div class="form-list">
+        <h3>Squat Technique Checklist</h3>
+        <ul>
+          ><strong>Stance</strong>: Feet about shoulder‑width apart, toes slightly turned out.</li>
+          ><strong>Bracing</strong>: Take a breath “into your belly,” gently tighten your core before you move.</li>
+          ><strong>Movement</strong>: Sit hips back and down like a controlled “sit to chair,” chest facing forward.</li>
+          ><strong>Knees</strong>: Track knees over 2nd–3rd toe, do not let them cave inward.</li>
+          ><strong>Depth</strong>: Go as low as you can while maintaining a flat back and heel contact with the floor.</li>
+        </ul>
+        <p class="form-tip">Use a box or bench behind you at first to learn consistent depth and safe control. [web:32]</p>
+
+        <h3 style="margin-top:1rem;">Hip Hinge / Deadlift Pattern</h3>
+        <ul>
+          ><strong>Neutral spine</strong>: Keep your back flat from head to hips, avoiding rounding or hyper‑arching. [web:31]</li>
+          ><strong>Hips first</strong>: Push hips back while softening your knees rather than bending mostly at the knees.</li>
+          ><strong>Bar or weights close</strong>: Keep weights close to shins and thighs to protect the lower back. [web:31]</li>
+          ><strong>Stand tall</strong>: Drive through mid‑foot and heels to stand up, squeezing glutes at the top.</li>
+        </ul>
+        <p class="form-tip">Practice with a dowel or broomstick along your back (touching head, upper back, and hips) to feel a neutral spine as you hinge. [web:31]</p>
+      </div>
+
+      <div class="form-img-card">
+        <!-- Technique diagrams: you can swap the URLs for your preferred images -->
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/807714ae9cc33aa8d3661ca20dd769a1c3bc4aeb.jpg" alt="Diagram showing correct bodyweight squat form side views">
+        <div class="form-img-caption">
+          Side‑view squat diagrams illustrate upright chest, neutral spine, and knees in line with toes, which are key safety points for adolescents learning the movement.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-img-row" style="margin-top:1.25rem;">
+      <div class="form-img-card">
+        <img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/f9d7d4971ea9e03ca0c727a2ec832c67e58fec41.jpg" alt="Diagram showing neutral spine during deadlift compared to rounded back">
+        <div class="form-img-caption">
+          A neutral spine position distributes forces safely through the hips and legs, while excessive rounding increases stress on the lower back. [web:31]
+        </div>
+      </div>
+      <div class="form-list">
+        <h3>Upper‑Body Technique Cues</h3>
+        <ul>
+          ><strong>Push‑ups / Pressing</strong>: Hands just outside shoulder‑width, elbows at about a 45° angle from your sides, not flared straight out. [web:32]</li>
+          ><strong>Rows</strong>: Keep chest lifted, pull shoulder blade back and down before bending the elbow. [web:32]</li>
+          ><strong>Overhead work</strong>: Only go overhead if you can raise arms without arching your low back; start with light dumbbells or bands. [web:32]</li>
+        </ul>
+
+        <h3 style="margin-top:1rem;">Safety Guidelines</h3>
+        <ul>
+          >Warm up 5–10 minutes before lifting with light cardio and dynamic movements. [web:32][web:38]</li>
+          >Start with bodyweight or very light weights; add load slowly over weeks, not days. [web:31][web:34]</li>
+          >Stop a set when technique breaks down, even if you could do more reps.</li>
+          >Avoid “one‑rep max” testing until late teens and only with experienced coaching. [web:34][web:40]</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="inner">
+    <div>&copy; <span id="year"></span> Youth Lifting Lab. Educational information only; not a substitute for medical advice.</div>
+    <div>Sources: Pediatric resistance training position statements and sports medicine research. [web:31][web:34][web:37]</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
